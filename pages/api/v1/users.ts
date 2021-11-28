@@ -1,7 +1,6 @@
 import {NextApiHandler} from 'next';
 import {getDatabaseConnection} from '../../../lib/getDatabaseConnection';
 import {User} from '../../../src/entity/User';
-import md5 from 'md5';
 
 const Posts: NextApiHandler = async (req, res) => {
     const {username, password, passwordConfirmation} = req.body;
@@ -16,7 +15,6 @@ const Posts: NextApiHandler = async (req, res) => {
         res.statusCode = 422;
         res.write(JSON.stringify(user.errors));
     } else {
-        user.passwordDigest = md5(password);
         await connection.manager.save(user);
         res.statusCode = 200;
         res.write(JSON.stringify(user));
