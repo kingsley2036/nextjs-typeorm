@@ -1,5 +1,5 @@
-import {User} from "./entity/User";
-import {getDatabaseConnection} from "../lib/getDatabaseConnection";
+import {User} from "../entity/User";
+import {getDatabaseConnection} from "../../lib/getDatabaseConnection";
 import md5 from "md5";
 
 export  class  SignIn {
