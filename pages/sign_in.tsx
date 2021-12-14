@@ -29,7 +29,7 @@ const SignIn: NextPage<{user:User}> = (props) => {
     }, [formData]);
     return (
         <>
-            {props.user&&
+            {props &&props.user&&
             <div>
                 当前登录用户为 {props.user.username}
             </div>
@@ -73,6 +73,7 @@ export default SignIn;
 export const getServerSideProps: GetServerSideProps = withSession(async (context) => {
     // @ts-ignore
     const user = context.req.session.get('currentUser');
+    console.log('user',typeof user)
     return {
         props: {
             user: JSON.parse(JSON.stringify(user))
